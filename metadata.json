@@ -1,0 +1,6 @@
+{
+  "name": "Minedoku",
+  "description": "Puzzle de lógica minimalista híbrido entre Buscaminas y Nonograma con niveles infinitos de solución única.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
