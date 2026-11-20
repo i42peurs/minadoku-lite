@@ -329,7 +329,7 @@ export function buildShareText(
     .join('\n');
 
   const lines = [
-    `Minedoku · ${summary.puzzleLabel} (${summary.size}×${summary.size})`,
+    `Minadoku Lite · ${summary.puzzleLabel} (${summary.size}×${summary.size})`,
     `Modo: ${modeNames[summary.mode]} · Tiempo: ${formatTime(summary.elapsedSeconds)}`,
     `Puntos: ${summary.scoreEarned} · Ayudas: ${summary.hintsUsed + summary.scannersUsed} · Errores: ${summary.mistakes}`,
   ];

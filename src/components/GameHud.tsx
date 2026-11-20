@@ -1,7 +1,7 @@
 // ============================================================================
 // HUD PERIMETRAL SUPERIOR COMPACTO
 // Muestra estado en vivo (minas restantes, fichas, vidas/reloj/racha según modo)
-// y acciones utilitarias (Deshacer, Reiniciar, Nuevo, Sonido, Animaciones, Tema, Pausa).
+// y acciones utilitarias (Deshacer, Reiniciar, Sonido, Tema y Pausa).
 // ============================================================================
 
 import React from 'react';
@@ -10,13 +10,10 @@ import {
   Moon,
   Pause,
   RotateCcw,
-  Sparkles,
   Sun,
   Undo2,
   Volume2,
   VolumeX,
-  Zap,
-  ZapOff,
 } from 'lucide-react';
 import { formatTime } from '../game/rules';
 import type { GameMode, GridSize, ThemeMode } from '../game/types';
@@ -27,7 +24,6 @@ interface GameHudProps {
   levelLabel: string;
   theme: ThemeMode;
   muted: boolean;
-  reducedMotion: boolean;
   tokens: number;
   remainingMines: number;
   elapsedSeconds: number;
@@ -38,13 +34,10 @@ interface GameHudProps {
   dailyStreak: number;
   isRecoveryRun: boolean;
   canUndo: boolean;
-  canGenerateNew: boolean;
   onUndo: () => void;
   onReset: () => void;
-  onNewLevel: () => void;
   onPause: () => void;
   onToggleMute: () => void;
-  onToggleReducedMotion: () => void;
   onToggleTheme: () => void;
   onReturnTitle: () => void;
 }
@@ -55,7 +48,6 @@ export const GameHud: React.FC<GameHudProps> = ({
   levelLabel,
   theme,
   muted,
-  reducedMotion,
   tokens,
   remainingMines,
   elapsedSeconds,
@@ -66,13 +58,10 @@ export const GameHud: React.FC<GameHudProps> = ({
   dailyStreak,
   isRecoveryRun,
   canUndo,
-  canGenerateNew,
   onUndo,
   onReset,
-  onNewLevel,
   onPause,
   onToggleMute,
-  onToggleReducedMotion,
   onToggleTheme,
   onReturnTitle,
 }) => {
@@ -87,7 +76,7 @@ export const GameHud: React.FC<GameHudProps> = ({
             aria-label="Volver al menú principal"
             className="font-display text-base font-bold tracking-tight text-zinc-900 hover:text-teal-700 dark:text-slate-50 dark:hover:text-teal-400 sm:text-lg whitespace-nowrap shrink-0"
           >
-            Minedoku
+            Minadoku Lite
           </button>
           <span className="text-xs text-zinc-400 dark:text-slate-600" aria-hidden="true">
             ·
@@ -231,21 +220,6 @@ export const GameHud: React.FC<GameHudProps> = ({
             <RotateCcw className="h-4 w-4" />
             <span className="hidden sm:inline">Reiniciar</span>
           </button>
-
-          {canGenerateNew && (
-            <button
-              type="button"
-              onClick={(e) => {
-                e.currentTarget.blur();
-                onNewLevel();
-              }}
-              aria-label="Generar nuevo tablero"
-              className="inline-flex h-9 items-center gap-1 rounded-lg bg-zinc-900 px-2.5 text-xs font-semibold text-white transition-colors hover:bg-zinc-800 dark:bg-slate-100 dark:text-slate-900 dark:hover:bg-white whitespace-nowrap shrink-0"
-            >
-              <Sparkles className="h-3.5 w-3.5" />
-              <span>Nuevo</span>
-            </button>
-          )}
         </div>
 
         <div className="flex items-center gap-1">
@@ -260,23 +234,6 @@ export const GameHud: React.FC<GameHudProps> = ({
             className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-zinc-300/90 bg-white text-zinc-700 transition-colors hover:bg-stone-100 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700 shrink-0"
           >
             {muted ? <VolumeX className="h-4 w-4" /> : <Volume2 className="h-4 w-4" />}
-          </button>
-
-          <button
-            type="button"
-            onClick={(e) => {
-              e.currentTarget.blur();
-              onToggleReducedMotion();
-            }}
-            aria-label={reducedMotion ? 'Activar animaciones' : 'Reducir animaciones'}
-            title={reducedMotion ? 'Animaciones reducidas (activar)' : 'Reducir animaciones'}
-            className={`inline-flex h-9 w-9 items-center justify-center rounded-lg border transition-colors shrink-0 ${
-              reducedMotion
-                ? 'border-teal-700/40 bg-teal-50 text-teal-800 dark:border-teal-400/40 dark:bg-teal-950/40 dark:text-teal-300'
-                : 'border-zinc-300/90 bg-white text-zinc-700 hover:bg-stone-100 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700'
-            }`}
-          >
-            {reducedMotion ? <ZapOff className="h-4 w-4" /> : <Zap className="h-4 w-4" />}
           </button>
 
           <button

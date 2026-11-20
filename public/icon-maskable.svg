@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Fondo full-bleed sin bordes para icono maskable (zona segura central ~76%) -->
+  <rect x="0" y="0" width="512" height="512" fill="#f3f1ea" />
+
+  <g transform="translate(76 76) scale(0.703125)">
+    <!-- Casilla superior izquierda: Bandera roja -->
+    <rect x="32" y="32" width="208" height="208" rx="34" fill="#ffffff" stroke="#d4cec0" stroke-width="8" />
+    <path
+      d="M104 188V84l80 35-80 35"
+      fill="#d9483b"
+      stroke="#d9483b"
+      stroke-width="16"
+      stroke-linejoin="round"
+      stroke-linecap="round"
+    />
+    <line x1="104" y1="154" x2="104" y2="196" stroke="#d9483b" stroke-width="16" stroke-linecap="round" />
+
+    <!-- Casilla superior derecha: X segura teal -->
+    <rect x="272" y="32" width="208" height="208" rx="34" fill="#ffffff" stroke="#d4cec0" stroke-width="8" />
+    <path
+      d="M332 92l88 88M420 92l-88 88"
+      fill="none"
+      stroke="#0f766e"
+      stroke-width="24"
+      stroke-linecap="round"
+    />
+
+    <!-- Casilla inferior izquierda: Pista numérica 2 -->
+    <rect x="32" y="272" width="208" height="208" rx="34" fill="#e6e1d5" stroke="#cfc8b8" stroke-width="8" />
+    <text
+      x="136"
+      y="410"
+      text-anchor="middle"
+      fill="#18181b"
+      font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace"
+      font-size="112"
+      font-weight="700"
+    >
+      2
+    </text>
+
+    <!-- Casilla inferior derecha: Mina minimalista -->
+    <rect x="272" y="272" width="208" height="208" rx="34" fill="#18181b" />
+    <g transform="translate(376 376)" stroke="#f3f1ea" stroke-width="14" stroke-linecap="round">
+      <line x1="0" y1="-50" x2="0" y2="50" />
+      <line x1="-50" y1="0" x2="50" y2="0" />
+      <line x1="-35" y1="-35" x2="35" y2="35" />
+      <line x1="35" y1="-35" x2="-35" y2="35" />
+    </g>
+    <circle cx="376" cy="376" r="32" fill="#f3f1ea" />
+    <circle cx="364" cy="364" r="8" fill="#18181b" />
+  </g>
+</svg>

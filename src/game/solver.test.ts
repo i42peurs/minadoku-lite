@@ -232,6 +232,6 @@ test('economía de fichas evita farmeo fácil en 5x5 Zen y bonifica racha en Mod
     },
     generateDailyPuzzle('2026-11-19')
   );
-  assert.ok(share.includes('Minedoku'));
+  assert.ok(share.includes('Minadoku Lite'));
   assert.ok(share.includes(formatTime(74)));
 });

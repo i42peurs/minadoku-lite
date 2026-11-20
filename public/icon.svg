@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f7f5ef" />
+      <stop offset="100%" stop-color="#ebe6da" />
+    </linearGradient>
+  </defs>
+
+  <!-- Fondo retro-moderno papel cálido con marco limpio -->
+  <rect x="0" y="0" width="512" height="512" rx="112" fill="url(#bg)" />
+  <rect x="20" y="20" width="472" height="472" rx="94" fill="none" stroke="#d4cec0" stroke-width="8" />
+
+  <!-- Cuadrícula 2x2 de casillas táctiles -->
+  <!-- Casilla superior izquierda: Bandera roja (mina) -->
+  <rect x="64" y="64" width="176" height="176" rx="28" fill="#ffffff" stroke="#d4cec0" stroke-width="6" />
+  <path
+    d="M126 196V106l68 30-68 30"
+    fill="#d9483b"
+    stroke="#d9483b"
+    stroke-width="14"
+    stroke-linejoin="round"
+    stroke-linecap="round"
+  />
+  <line x1="126" y1="166" x2="126" y2="202" stroke="#d9483b" stroke-width="14" stroke-linecap="round" />
+
+  <!-- Casilla superior derecha: X segura teal -->
+  <rect x="272" y="64" width="176" height="176" rx="28" fill="#ffffff" stroke="#d4cec0" stroke-width="6" />
+  <path
+    d="M322 114l76 76M398 114l-76 76"
+    fill="none"
+    stroke="#0f766e"
+    stroke-width="20"
+    stroke-linecap="round"
+  />
+
+  <!-- Casilla inferior izquierda: Número pista 2 en casilla revelada -->
+  <rect x="64" y="272" width="176" height="176" rx="28" fill="#e6e1d5" stroke="#cfc8b8" stroke-width="6" />
+  <text
+    x="152"
+    y="390"
+    text-anchor="middle"
+    fill="#18181b"
+    font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace"
+    font-size="96"
+    font-weight="700"
+  >
+    2
+  </text>
+
+  <!-- Casilla inferior derecha: Mina geométrica minimalista -->
+  <rect x="272" y="272" width="176" height="176" rx="28" fill="#18181b" />
+  <g transform="translate(360 360)" stroke="#f3f1ea" stroke-width="12" stroke-linecap="round">
+    <line x1="0" y1="-44" x2="0" y2="44" />
+    <line x1="-44" y1="0" x2="44" y2="0" />
+    <line x1="-31" y1="-31" x2="31" y2="31" />
+    <line x1="31" y1="-31" x2="-31" y2="31" />
+  </g>
+  <circle cx="360" cy="360" r="28" fill="#f3f1ea" />
+  <circle cx="350" cy="350" r="7" fill="#18181b" />
+</svg>

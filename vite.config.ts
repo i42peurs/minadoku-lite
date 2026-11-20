@@ -10,6 +10,22 @@ export default defineConfig(() => {
     plugins: [
       react(),
       tailwindcss(),
+      {
+        name: 'dev-root-redirect-minadoku-lite',
+        apply: 'serve',
+        configureServer(server) {
+          server.middlewares.use((req, res, next) => {
+            if (req.url === '/' || req.url?.startsWith('/?')) {
+              const query = req.url.slice(1);
+              res.statusCode = 302;
+              res.setHeader('Location', `/minadoku-lite/${query}`);
+              res.end();
+              return;
+            }
+            next();
+          });
+        },
+      },
       // Copies src/assets into dist/ so root-relative URLs like
       // "/src/assets/images/..." (e.g. generate_image output) still resolve
       // in production builds. Do not remove.

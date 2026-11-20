@@ -1,5 +1,5 @@
 // ============================================================================
-// MINEDOKU — APLICACIÓN PRINCIPAL LOCAL (100% NAVEGADOR, SIN BACKEND)
+// MINADOKU LITE — APLICACIÓN PRINCIPAL LOCAL (100% NAVEGADOR, SIN BACKEND)
 // Orquesta la máquina de estados, los 4 modos (Academia, Zen, Vidas, Diario),
 // marcas (Vacía, Bandera, X, ?), Pista Didáctica, Escáner, fichas y localStorage.
 // ============================================================================
@@ -35,11 +35,9 @@ import { findDidacticHint } from './game/solver';
 import {
   loadMuted,
   loadProgress,
-  loadReducedMotion,
   loadTheme,
   saveMuted,
   saveProgress,
-  saveReducedMotion,
   saveTheme,
 } from './game/storage';
 import type {
@@ -107,7 +105,6 @@ export default function App() {
     soundFx.setMuted(m);
     return m;
   });
-  const [reducedMotion, setReducedMotion] = useState<boolean>(() => loadReducedMotion());
 
   // Progreso persistente en localStorage (actualizando estado diario al arrancar)
   const [progress, setProgress] = useState<PlayerProgress>(() => {
@@ -150,17 +147,15 @@ export default function App() {
   const [runSummary, setRunSummary] = useState<RunSummary | null>(null);
   const [recoveryRemainingAfterFail, setRecoveryRemainingAfterFail] = useState<number | null>(null);
 
-  // Sincronizar tema oscuro en <html>
+  // Sincronizar tema oscuro en <html> y meta theme-color para PWA/móvil
   useEffect(() => {
     document.documentElement.classList.toggle('dark', theme === 'dark');
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    if (metaTheme) {
+      metaTheme.setAttribute('content', theme === 'dark' ? '#12151c' : '#f3f1ea');
+    }
     saveTheme(theme);
   }, [theme]);
-
-  // Sincronizar reducir animaciones en <html>
-  useEffect(() => {
-    document.documentElement.classList.toggle('reduce-motion', reducedMotion);
-    saveReducedMotion(reducedMotion);
-  }, [reducedMotion]);
 
   // Sincronizar estado del Game Shell en body
   useEffect(() => {
@@ -652,7 +647,6 @@ export default function App() {
       return next;
     });
   }, []);
-  const handleToggleReducedMotion = useCallback(() => setReducedMotion((r) => !r), []);
 
   // Atajos de teclado en PC
   useEffect(() => {
@@ -738,14 +732,12 @@ export default function App() {
           todayKey={todayKey}
           theme={theme}
           muted={muted}
-          reducedMotion={reducedMotion}
           progress={progress}
           onSelectMode={setMode}
           onSelectSize={setSize}
           onSelectAcademyIdx={setAcademyIdx}
           onToggleTheme={handleToggleTheme}
           onToggleMute={handleToggleMute}
-          onToggleReducedMotion={handleToggleReducedMotion}
           onStartGame={() => startSelectedGame()}
           onStartDailyRecovery={startDailyRecoveryChallenge}
         />
@@ -761,7 +753,6 @@ export default function App() {
         levelLabel={puzzle.label ?? `${mode.toUpperCase()}`}
         theme={theme}
         muted={muted}
-        reducedMotion={reducedMotion}
         tokens={progress.tokens}
         remainingMines={puzzle.totalMines - evaluation.totalFlags}
         elapsedSeconds={elapsedSeconds}
@@ -772,13 +763,10 @@ export default function App() {
         dailyStreak={progress.daily.currentStreak}
         isRecoveryRun={isRecoveryRun}
         canUndo={history.length > 0}
-        canGenerateNew={mode === 'zen' || mode === 'lives'}
         onUndo={handleUndo}
         onReset={handleResetSameBoard}
-        onNewLevel={() => startSelectedGame(mode, size)}
         onPause={() => setPhase('paused')}
         onToggleMute={handleToggleMute}
-        onToggleReducedMotion={handleToggleReducedMotion}
         onToggleTheme={handleToggleTheme}
         onReturnTitle={() => setPhase('title')}
       />

@@ -106,15 +106,6 @@ html.dark .retro-panel {
   animation: minedoku-hint-ring 1.3s ease-in-out infinite;
 }
 
-/* Opción explícita de reducir animaciones (toggle del jugador o sistema) */
-html.reduce-motion *,
-html.reduce-motion *::before,
-html.reduce-motion *::after {
-  animation-duration: 0.01ms !important;
-  animation-iteration-count: 1 !important;
-  transition-duration: 0.01ms !important;
-}
-
 @media (prefers-reduced-motion: reduce) {
   .animate-cell-pop,
   .animate-cell-shake,

@@ -18,11 +18,10 @@ import {
   Sun,
   Volume2,
   VolumeX,
-  Zap,
-  ZapOff,
 } from 'lucide-react';
 import { ACADEMY_LESSONS } from '../game/academy';
 import type { GameMode, GridSize, PlayerProgress, ThemeMode } from '../game/types';
+import { PWAInstallButton } from './PWAInstallButton';
 
 interface TitleScreenProps {
   selectedMode: GameMode;
@@ -31,14 +30,12 @@ interface TitleScreenProps {
   todayKey: string;
   theme: ThemeMode;
   muted: boolean;
-  reducedMotion: boolean;
   progress: PlayerProgress;
   onSelectMode: (mode: GameMode) => void;
   onSelectSize: (size: GridSize) => void;
   onSelectAcademyIdx: (idx: number) => void;
   onToggleTheme: () => void;
   onToggleMute: () => void;
-  onToggleReducedMotion: () => void;
   onStartGame: () => void;
   onStartDailyRecovery: () => void;
 }
@@ -52,14 +49,12 @@ export const TitleScreen: React.FC<TitleScreenProps> = ({
   todayKey,
   theme,
   muted,
-  reducedMotion,
   progress,
   onSelectMode,
   onSelectSize,
   onSelectAcademyIdx,
   onToggleTheme,
   onToggleMute,
-  onToggleReducedMotion,
   onStartGame,
   onStartDailyRecovery,
 }) => {
@@ -114,6 +109,8 @@ export const TitleScreen: React.FC<TitleScreenProps> = ({
         </div>
 
         <div className="flex items-center gap-1.5">
+          <PWAInstallButton />
+
           <button
             type="button"
             onClick={onToggleMute}
@@ -122,23 +119,6 @@ export const TitleScreen: React.FC<TitleScreenProps> = ({
             className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-zinc-300/90 bg-white/90 text-zinc-700 transition-colors hover:bg-white dark:border-slate-700 dark:bg-slate-800/90 dark:text-slate-200 dark:hover:bg-slate-800"
           >
             {muted ? <VolumeX className="h-4 w-4" /> : <Volume2 className="h-4 w-4" />}
-          </button>
-
-          <button
-            type="button"
-            onClick={onToggleReducedMotion}
-            aria-label={reducedMotion ? 'Activar animaciones' : 'Reducir animaciones'}
-            title={reducedMotion ? 'Animaciones reducidas' : 'Reducir animaciones'}
-            className={`inline-flex h-9 items-center gap-1.5 rounded-lg border px-2.5 text-xs font-medium transition-colors whitespace-nowrap shrink-0 ${
-              reducedMotion
-                ? 'border-teal-700/40 bg-teal-50 text-teal-800 dark:border-teal-400/40 dark:bg-teal-950/40 dark:text-teal-300'
-                : 'border-zinc-300/90 bg-white/90 text-zinc-700 hover:bg-white dark:border-slate-700 dark:bg-slate-800/90 dark:text-slate-200 dark:hover:bg-slate-800'
-            }`}
-          >
-            {reducedMotion ? <ZapOff className="h-3.5 w-3.5" /> : <Zap className="h-3.5 w-3.5" />}
-            <span className="hidden sm:inline">
-              {reducedMotion ? 'Sin anim.' : 'Animaciones'}
-            </span>
           </button>
 
           <button
@@ -227,7 +207,7 @@ export const TitleScreen: React.FC<TitleScreenProps> = ({
             </svg>
             <div>
               <h1 className="font-display text-4xl font-bold tracking-tight text-zinc-900 dark:text-slate-50 sm:text-5xl">
-                Minedoku
+                Minadoku Lite
               </h1>
               <p className="text-sm text-zinc-600 dark:text-slate-400">
                 Buscaminas × Nonograma · Solución única verificada
